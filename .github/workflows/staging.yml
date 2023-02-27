@@ -7,19 +7,8 @@ on:
     branches: [ "staging" ]
 
 jobs:
-
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file ./backend/Dockerfile --tag pretty-image:$(date +%s)
-      
-  publish:
+  docker:
      runs-on: ubuntu-latest
-     needs: build 
      steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -30,17 +19,17 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
       - name: Build and push
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          context: ./backend
           push: true
           tags: kingscourt/staging:latest
 
   deploy:
     runs-on: ubuntu-latest
-    needs: publish
+    needs: docker
     steps:
 
     - name: stop and remove docker image
