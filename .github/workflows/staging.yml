@@ -49,7 +49,4 @@ jobs:
         port: 22
         script: |
           docker pull kingscourt/staging:latest 
-          docker run -d --name kingscourtstaging \
-          -p 420:80 \
-          -e conn_string_staging=${{ secrets.CONN_STRING_STAGING }} \
-          kingscourt/staging:latest
+          docker run -d --name kingscourtstaging -p 420:80 -e conn_string_staging=${{ secrets.CONN_STRING_STAGING }} kingscourt/staging:latest
