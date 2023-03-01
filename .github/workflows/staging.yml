@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Deployment Staging
 
 on:
   push:
