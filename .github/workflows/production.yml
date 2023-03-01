@@ -49,4 +49,4 @@ jobs:
         port: 22
         script: |
           docker pull kingscourt/production:latest 
-          docker run -d --name kingscourtproduction -p 420:80 -e "CONNECTION_STRING=${{ secrets.CONN_STRING_PRODUCTION }}" kingscourt/production:latest
+          docker run -d --name kingscourtproduction -p 80:80 -e "CONNECTION_STRING=${{ secrets.CONN_STRING_PRODUCTION }}" kingscourt/production:latest
