@@ -1,6 +1,8 @@
-public abstract class GameMode {
+namespace common.Models;
+
+public class GameMode {
     public Guid GameModeId { get; set; }
-    public String Name { get; set; }
+    public GameModeEnum GameModeType { get; set; }
     public int TimeLimit { get; set; }
     public int TimeIncrement { get; set; }
 }
