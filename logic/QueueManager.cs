@@ -5,7 +5,7 @@ public class QueueManager {
     private readonly TimeSpan _checkInterval = TimeSpan.FromSeconds(5);
 
     public async Task CheckForMatch() {
-        var matchedPlayers = _players.GroupBy(p => p.GameMode.GameModeType).FirstOrDefault(g => g.Count() >= 2);
+        var matchedPlayers = _players.GroupBy(p => p.GameMode).FirstOrDefault(g => g.Count() >= 2);
 
         if (matchedPlayers != null) {
              // Create a new game using the matched players and remove them from the queue

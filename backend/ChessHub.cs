@@ -35,5 +35,4 @@ public class ChessHub : Hub
 
         _queueManager.RemovePlayer(player);
     }
-
 }
