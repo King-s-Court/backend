@@ -1,11 +1,11 @@
 ﻿namespace common.models;
 
-public enum Type
+public enum PieceType
 {
-    Pawn,
-    Knight,
-    Bishop,
+    Juicer,
     Rook,
+    Bishop,
+    Knight,
     Queen,
     King
 }

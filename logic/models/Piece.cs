@@ -1,14 +1,13 @@
 ﻿namespace common.models;
 
-public class Piece
+public abstract class Piece
 {
-    public Type Type { get; set; }
-    
-    public Color Color { get; set; }
-    
-    public Piece(Type type, Color color)
+    public abstract PieceColor PieceColor { get; set; }
+    public abstract PieceType PieceType { get; set; }
+
+    public Piece(PieceColor pieceColor, PieceType pieceType)
     {
-        Type = type;
-        Color = color;
+        PieceColor = pieceColor;
+        PieceType = pieceType;
     }
 }

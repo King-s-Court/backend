@@ -1,6 +1,6 @@
 ﻿namespace common.models;
 
-public enum Color
+public enum PieceColor
 {
     White,
     Black

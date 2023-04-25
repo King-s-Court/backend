@@ -1,5 +1,5 @@
 ﻿using common.models;
-using Type = common.models.Type;
+using common.models.pieces;
 
 namespace logic;
 
@@ -11,23 +11,24 @@ public class FENInterpreter
     /// rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
     /// </param>
     /// </summary>
+    
     private static readonly Dictionary<char, Piece> _pieceFromChar = new()
     {
-        {'k', new Piece(Type.King, Color.Black)},
-        {'q', new Piece(Type.Queen, Color.Black)},
-        {'r', new Piece(Type.Rook, Color.Black)},
-        {'b', new Piece(Type.Bishop, Color.Black)},
-        {'n', new Piece(Type.Knight, Color.Black)},
-        {'p', new Piece(Type.Pawn, Color.Black)},
-        {'K', new Piece(Type.King, Color.White)},
-        {'Q', new Piece(Type.Queen, Color.White)},
-        {'R', new Piece(Type.Rook, Color.White)},
-        {'B', new Piece(Type.Bishop, Color.White)},
-        {'N', new Piece(Type.Knight, Color.White)},
-        {'P', new Piece(Type.Pawn, Color.White)}
+        {'k', new King(PieceColor.Black, PieceType.King)},
+        {'q', new Queen(PieceColor.Black, PieceType.Queen)},
+        {'r', new Rook(PieceColor.Black, PieceType.Rook)},
+        {'b', new Bishop(PieceColor.Black, PieceType.Bishop)},
+        {'n', new Knight(PieceColor.Black, PieceType.Knight)},
+        {'p', new Juicer(PieceColor.Black, PieceType.Juicer)},
+        {'K', new King(PieceColor.White, PieceType.King)},
+        {'Q', new Queen(PieceColor.White, PieceType.Queen)},
+        {'R', new Rook(PieceColor.White, PieceType.Rook)},
+        {'B', new Bishop(PieceColor.White, PieceType.Bishop)},
+        {'N', new Knight(PieceColor.White, PieceType.Knight)},
+        {'P', new Juicer(PieceColor.White, PieceType.Juicer)}
     };
 
-    public static void LoadPositionFromFEN(string fen)
+    public static void LoadPositionFromFEN(string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
     {
         string BoardFromFen = fen.Split(' ')[0];
         int rank = 0, file = 0;
@@ -45,7 +46,7 @@ public class FENInterpreter
             }
             else
             {
-                Board.Squares[rank * 8 + file] = _pieceFromChar[symbol];
+                Board.AddPiece(rank, file, _pieceFromChar[symbol]);
                 file++;
             }
         }
