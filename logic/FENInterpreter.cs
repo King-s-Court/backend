@@ -11,7 +11,6 @@ public class FENInterpreter
     /// rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
     /// </param>
     /// </summary>
-    
     private static readonly Dictionary<char, Piece> _pieceFromChar = new()
     {
         {'k', new Piece(Type.King, Color.Black)},
@@ -47,6 +46,7 @@ public class FENInterpreter
             else
             {
                 Board.Squares[rank * 8 + file] = _pieceFromChar[symbol];
+                file++;
             }
         }
     }

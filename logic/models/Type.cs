@@ -2,7 +2,6 @@
 
 public enum Type
 {
-    Empty,
     Pawn,
     Knight,
     Bishop,
