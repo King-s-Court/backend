@@ -14,43 +14,45 @@ public static class Move
     // Returns true if the piece can move according to its type if it was alone on the chess board
     public static bool IsValidTypeMove(Piece piece, int startRank, int startFile, int targetRank, int targetFile)
     {
-        //TODO: Implement exception throwing for out of bounds for rank and file starts and targets
-        switch (piece.PieceType)
+        var startIndex = startRank * 8 + startFile;
+        var endIndex = targetRank * 8 + targetFile;
+        if (startIndex is >= 0 and < 64 && endIndex is >= 0 and < 64)
         {
-            case(PieceType.Juicer):
-                if (!(piece as Juicer).HasMoved && Math.Abs(targetRank - startRank) == 2)
-                {
-                    return true;
-                }
-                if (Math.Abs(targetRank - startRank) == 2)
-                {
-                    return false;
-                }
-                if (piece.PieceColor == PieceColor.Black)
-                {
-                    return (targetRank == startRank + 1);
-                }
-                return (targetRank == startRank - 1);
-            
-            case(PieceType.Rook):
-                // move forward and backward, i.e., rank + 1 or rank - 1
-                // move right or left, i.e., file + 1 or file - 1
-                // only changes rank OR file
-                break;
-            case(PieceType.Knight):
-                break;
-            case(PieceType.Bishop): 
-                // move diagonally, i.e., rank +/- 1 and file +/- 1
-                break;
-            case(PieceType.Queen):
-                // combination of rook and bishop, only one can be true
-                break;
-            case(PieceType.King):
-                // queen with radius of one square
-                break;
+            switch (piece.PieceType)
+                    {
+                        case(PieceType.Juicer):
+                            if (!(piece as Juicer).HasMoved && Math.Abs(targetRank - startRank) == 2)
+                            {
+                                return true;
+                            }
+                            if (Math.Abs(targetRank - startRank) == 2)
+                            {
+                                return false;
+                            }
+                            if (piece.PieceColor == PieceColor.Black)
+                            {
+                                return (targetRank == startRank + 1);
+                            }
+                            return (targetRank == startRank - 1);
+                        
+                        case(PieceType.Rook):
+                            return (startRank != targetRank && startFile == targetFile || startRank == targetRank && startFile != targetFile);
+                        
+                        case(PieceType.Knight):
+                            return (Math.Abs(targetRank - startRank) == 2 && Math.Abs(targetFile - startFile) == 1 || Math.Abs(targetRank - startRank) == 1 && Math.Abs(targetFile - startFile) == 2);
+                        
+                        case(PieceType.Bishop):
+                            return (Math.Abs(targetRank - startRank) == Math.Abs(targetFile - startFile));
+                        
+                        case(PieceType.Queen):
+                            return ((Math.Abs(targetRank - startRank) == Math.Abs(targetFile - startFile)) || (startRank != targetRank && startFile == targetFile || startRank == targetRank && startFile != targetFile));
+                            
+                        case(PieceType.King):
+                            return (Math.Abs(targetRank - startRank) == 1 && Math.Abs(targetFile - startFile) == 1 || Math.Abs(targetRank - startRank) == 1 && Math.Abs(targetFile - startFile) == 0 || Math.Abs(targetRank - startRank) == 0 && Math.Abs(targetFile - startFile) == 1);
+                    }
         }
-
-        return true;
+        Console.WriteLine("Move.IsValidTypeMove: Invalid move.");
+        return false;
     }
 }
 

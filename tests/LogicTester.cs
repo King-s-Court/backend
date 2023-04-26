@@ -8,7 +8,6 @@ namespace Tests
 {
     public class BoardTests
     {
-        
         [Fact]
         public void CheckWhitePiecePos()
         {
@@ -112,6 +111,156 @@ namespace Tests
             // random movement
             Assert.False(Move.IsValidTypeMove(whiteJuicerMoved, 5, 2, 2, 4));
             Assert.False(Move.IsValidTypeMove(blackJuicerMoved, 1, 0, 0, 0));
+            
+            // out of bounds move
+            Assert.False(Move.IsValidTypeMove(whiteJuicerMoved, 0, 0, -1, -1));
+        }
+
+        [Fact]
+        public void CheckRookTypeMove()
+        {
+            var whiteRook = new Rook(PieceColor.White, PieceType.Rook);
+            
+            // valid move up (rank -7 file 0)
+            Assert.True(Move.IsValidTypeMove(whiteRook, 7, 0, 0, 0));
+            
+            // valid move right (rank 0 file +7)   
+            Assert.True(Move.IsValidTypeMove(whiteRook, 7, 0, 7, 7));
+            
+            // valid move down (rank +7 file 0)
+            Assert.True(Move.IsValidTypeMove(whiteRook, 0, 0, 7, 0));
+            
+            // valid move left (rank 0 file -7)
+            Assert.True(Move.IsValidTypeMove(whiteRook, 7, 7, 7, 0));
+            
+            // invalid move 
+            Assert.False(Move.IsValidTypeMove(whiteRook, 7, 0, 0, 7));
+            
+            // out of bounds move
+            Assert.False(Move.IsValidTypeMove(whiteRook, 0, 0, -1, -1));
+        }
+
+        [Fact]
+        public void CheckKnightTypeMove()
+        {
+            var whiteKnight = new Knight(PieceColor.White, PieceType.Knight);
+            
+            // valid move north-east (rank -2 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteKnight, 3, 3, 1, 4));
+            
+            // valid move south-east (rank +2 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteKnight, 3, 3, 5, 2));
+            
+            // valid move north-west (rank -2 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteKnight, 3, 3, 1, 2));
+            
+            // valid move south-west (rank +2 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteKnight, 3, 3, 5, 2));
+            
+            // invalid move
+            Assert.False(Move.IsValidTypeMove(whiteKnight, 0, 0, 7, 7));
+            
+            // out of bounds move
+            Assert.False(Move.IsValidTypeMove(whiteKnight, 0, 0, -1, -1));
+        }
+
+        [Fact]
+        public void CheckBishopTypeMove()
+        { 
+            var whiteBishop =  new Bishop(PieceColor.White, PieceType.Bishop);
+            
+            // valid move north-east (rank -1 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteBishop, 3, 3, 2, 4));
+            
+            // valid move south-east (rank +1 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteBishop, 3, 3, 4, 4));
+            
+            // valid move south-west (rank +1 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteBishop, 3, 3, 4, 2));
+            
+            // valid move north-west (rank -1 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteBishop, 3, 3, 2, 2));
+            
+            // invalid move diagonally
+            Assert.False(Move.IsValidTypeMove(whiteBishop, 7, 0, 1, 7));
+            
+            // invalid move straight
+            Assert.False(Move.IsValidTypeMove(whiteBishop, 7, 0, 0, 0));
+
+            // out of bounds move
+            Assert.False(Move.IsValidTypeMove(whiteBishop, 3, 3, -1, -1));
+        }
+        
+        [Fact]
+        public void CheckQueenTypeMove()
+        {
+            var whiteQueen = new Queen(PieceColor.White, PieceType.Queen);
+            
+            // valid move north-east (rank -1 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteQueen, 3, 3, 2, 4));
+            
+            // valid move south-east (rank +1 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteQueen, 3, 3, 4, 4));
+            
+            // valid move south-west (rank +1 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteQueen, 3, 3, 4, 2));
+            
+            // valid move north-west (rank -1 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteQueen, 3, 3, 2, 2));
+            
+            // valid move up (rank -7 file 0)
+            Assert.True(Move.IsValidTypeMove(whiteQueen, 7, 0, 0, 0));
+            
+            // valid move right (rank 0 file +7)
+            Assert.True(Move.IsValidTypeMove(whiteQueen, 7, 0, 7, 7));
+            
+            // valid move down (rank +7 file 0)
+            Assert.True(Move.IsValidTypeMove(whiteQueen, 0, 0, 7, 0));
+            
+            // valid move left (rank 0 file -7)
+            Assert.True(Move.IsValidTypeMove(whiteQueen, 7, 7, 7, 0));
+            
+            // invalid move diagonally
+            Assert.False(Move.IsValidTypeMove(whiteQueen, 7, 3, 6, 5));
+            
+            // out of bounds move
+            Assert.False(Move.IsValidTypeMove(whiteQueen, 3, 3, -1, -1));
+        }
+
+        [Fact]
+        public void CheckKingTypeMove()
+        {
+            var whiteKing = new King(PieceColor.White, PieceType.King);
+            
+            // valid move up (rank -1 file 0)
+            Assert.True(Move.IsValidTypeMove(whiteKing, 5, 3, 4, 3));
+            
+            // valid move right (rank 0 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteKing, 5, 3, 5, 4));
+            
+            // valid move down (rank +1 file 0)
+            Assert.True(Move.IsValidTypeMove(whiteKing, 5, 3, 6, 3));
+            
+            // valid move left (rank 0 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteKing, 5, 3, 5, 2));
+            
+            // valid move north-east (rank -1 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteKing, 5, 3, 4, 4));
+            
+            // valid move south-east (rank +1 file +1)
+            Assert.True(Move.IsValidTypeMove(whiteKing, 5, 3, 6, 4));
+            
+            // valid move south-west (rank +1 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteKing, 5, 3, 6, 2));
+            
+            // valid move north-west (rank -1 file -1)
+            Assert.True(Move.IsValidTypeMove(whiteKing, 5, 3, 4, 2));
+            
+            //invalid move too far
+            Assert.False(Move.IsValidTypeMove(whiteKing, 5, 3, 3, 1));
+            
+            // out of bounds move
+            Assert.False(Move.IsValidTypeMove(whiteKing, 5, 3, -1, -1));
         }
     }
 }

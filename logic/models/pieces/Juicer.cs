@@ -2,7 +2,7 @@
 
 public class Juicer : Piece
 {
-    public bool HasMoved { get; set; }
+    public bool HasMoved { get; private set; }
     public Juicer(PieceColor pieceColor, PieceType pieceType, bool hasMoved = false) : base(pieceColor, pieceType)
     {
         HasMoved = hasMoved;

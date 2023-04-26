@@ -1,20 +1,8 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2d841009_002Df51a_002D4cd9_002D859d_002D19d2b56c6c23/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BoardTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::7CC03152-3697-4A10-A249-7003BBBA2A62::net6.0::Tests.BoardTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4d8c3711_002D01a7_002D4fd0_002Db400_002D02e2fd27a8fd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CheckBlackPiecePos" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::7CC03152-3697-4A10-A249-7003BBBA2A62::net6.0::Tests.BoardTests.CheckBlackPiecePos&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5530682a_002D8229_002D4793_002Db9bf_002D54a77d9f1221/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BoardTests #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::7CC03152-3697-4A10-A249-7003BBBA2A62::net6.0::Tests.BoardTests&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9b7af394_002D2d0f_002D417b_002Dbdeb_002Df4cd2cea3c09/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BoardTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	
+	
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9b7af394_002D2d0f_002D417b_002Dbdeb_002Df4cd2cea3c09/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BoardTests #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::7CC03152-3697-4A10-A249-7003BBBA2A62::net6.0::Tests.BoardTests&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
