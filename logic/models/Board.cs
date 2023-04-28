@@ -16,6 +16,11 @@ public static class Board
         }
     }
 
+    public static Square[,] GetBoardSquares()
+    {
+        return Squares;
+    }
+
     public static void AddPiece(int rank, int file, Piece piece)
     {
         Squares[rank, file].SquarePiece = piece;

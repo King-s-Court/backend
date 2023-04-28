@@ -262,5 +262,11 @@ namespace Tests
             // out of bounds move
             Assert.False(Move.IsValidTypeMove(whiteKing, 5, 3, -1, -1));
         }
+
+        [Fact]
+        public void VisualizeBoard()
+        {
+            BoardVisualizer.VisualizeBoard();
+        }
     }
 }
