@@ -1,36 +1,38 @@
 ﻿using common.models;
+using common.models.pieces;
+using static System.Console;
 
 namespace logic;
 
 public static class BoardVisualizer
 {
-    public static void VisualizeBoard()
+    public static void VisualizeBoardFromFEN()
     {
-        var Squares = Board.GetBoardSquares();
         for (int rank = 0; rank < 8; rank++)
         {
+            Write("\n---------------------------------\n");
             for (int file = 0; file < 8; file++)
             {
-                var piece = Squares[rank, file].SquarePiece;
-                if (piece == null)
+                Write("|");
+                if (Board.Squares[rank, file].SquarePiece == null)
                 {
-                    Console.Write(" ");
+                    Write("   ");
                 }
                 else
                 {
-                    Console.Write(piece.PieceColor == PieceColor.White ? "w" : "b");
-                    Console.Write(piece.PieceType switch
-                    {
-                        PieceType.Juicer => "p",
-                        PieceType.Knight => "n",
-                        PieceType.Bishop => "b",
-                        PieceType.Rook => "r",
-                        PieceType.Queen => "q",
-                        PieceType.King => "k",
-                        _ => throw new ArgumentOutOfRangeException()
-                    });
+                    Write(" " + Board.Squares[rank, file].SquarePiece.AsFENChar() + " ");
                 }
             }
+            Write($"| {8 - rank}");
+        }
+        Write("\n---------------------------------");
+        Write("\n  a   b   c   d   e   f   g   h \n\n");
+        Write("Color to move: ");
+        Write(Board.ToMove == PieceColor.White ? "White\n" : "Black\n");
+        Write("Castling rights: \n");
+        foreach (char symbol in Board.CastlingRights)
+        {
+            Write(CastlignRightsDictionary._castlingRights[symbol]+ '\n');
         }
     }
 }
