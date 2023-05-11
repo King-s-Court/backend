@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 [Route("[controller]")]
 public class TestController : ControllerBase
 {
-
     [HttpGet]
     public IActionResult GetAll()
     {

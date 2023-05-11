@@ -8,6 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "data", "data\data.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logic", "logic\logic.csproj", "{EEED19BC-2984-40C3-A404-DE978988FE70}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{7CC03152-3697-4A10-A249-7003BBBA2A62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cli", "cli\cli.csproj", "{9467FA5E-5457-4115-943B-74CFBE369AF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{EEED19BC-2984-40C3-A404-DE978988FE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEED19BC-2984-40C3-A404-DE978988FE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEED19BC-2984-40C3-A404-DE978988FE70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CC03152-3697-4A10-A249-7003BBBA2A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CC03152-3697-4A10-A249-7003BBBA2A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CC03152-3697-4A10-A249-7003BBBA2A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CC03152-3697-4A10-A249-7003BBBA2A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9467FA5E-5457-4115-943B-74CFBE369AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9467FA5E-5457-4115-943B-74CFBE369AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9467FA5E-5457-4115-943B-74CFBE369AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9467FA5E-5457-4115-943B-74CFBE369AF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
