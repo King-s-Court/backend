@@ -13,8 +13,32 @@ public abstract class Piece
 
     public char AsFENChar()
     {
-        return this.PieceColor == PieceColor.Black
-            ? $"{this.PieceType}".ToLower()[0]
-            : $"{this.PieceType}"[0];
+        if (this.PieceColor == PieceColor.White)
+        {
+            return this.PieceType switch
+            {
+                PieceType.Juicer => 'J',
+                PieceType.Rook => 'R',
+                PieceType.Knight => 'N',
+                PieceType.Bishop => 'B',
+                PieceType.Queen => 'Q',
+                PieceType.King => 'K',
+                _ => ' '
+            };
+        }
+        else if (this.PieceColor == PieceColor.Black)
+        {
+            return this.PieceType switch
+            {
+                PieceType.Juicer => 'j',
+                PieceType.Rook => 'r',
+                PieceType.Knight => 'n',
+                PieceType.Bishop => 'b',
+                PieceType.Queen => 'q',
+                PieceType.King => 'k',
+                _ => ' '
+            };
+        }
+        return ' ';
     }
 }
