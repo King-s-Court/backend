@@ -20,7 +20,6 @@ public static class Move
 		{
 			switch (piece.PieceType)
 					{
-						// this is fine
 						case(PieceType.Juicer):
 							if (!(piece as Juicer).HasMoved && Math.Abs(targetRank - startRank) == 2)
 							{
@@ -55,5 +54,9 @@ public static class Move
 		Console.WriteLine("Move.IsValidTypeMove: Invalid move.");
 		return false;
 	}
+	// public static bool IsClearPath()
+	// {
+		
+	// }
 }
 
