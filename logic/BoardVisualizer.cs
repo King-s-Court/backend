@@ -43,4 +43,20 @@ public static class BoardVisualizer
 		Write($"En passant target square: \n {Board.EnPassant}");
 
 	}
+	
+	public static void VisualizeBoardForSystemCoords()
+	{
+		for (int rank = 0; rank < 8; rank++)
+		{
+			Write("\n---------------------------------\n");
+			for (int file = 0; file < 8; file++)
+			{
+				Write("|");
+				Write($"{rank}:{file}");
+			}
+			Write($"| {8 - rank}");
+		}
+		Write("\n---------------------------------");
+		Write("\n  a   b   c   d   e   f   g   h \n\n");
+	}
 }
