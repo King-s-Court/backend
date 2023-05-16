@@ -8,22 +8,23 @@ string? FEN = Console.ReadLine();
 
 if (string.IsNullOrEmpty(FEN))
 {
-	Console.WriteLine("Using default FEN");
-	FENInterpreter.LoadBoardFromFEN();
-	FENInterpreter.LoadGameDataFromFEN();
-	BoardVisualizer.VisualizeBoardFromSquares();
+    Console.WriteLine("Using default FEN");
+    FENInterpreter.LoadBoardFromFEN();
+    FENInterpreter.LoadGameDataFromFEN();
+    BoardVisualizer.VisualizeBoardFromSquares();
 }
 else if (!FENInterpreter.IsValidFEN(FEN))
 {
-	Console.WriteLine("Invalid FEN string.");
+    Console.WriteLine("Invalid FEN string.");
 }
 else
 {
-	Console.WriteLine($"Using {FEN}");
-	FENInterpreter.LoadBoardFromFEN(FEN);
-	FENInterpreter.LoadGameDataFromFEN(FEN);
-	BoardVisualizer.VisualizeBoardFromSquares();
+    Console.WriteLine($"Using {FEN}");
+    FENInterpreter.LoadBoardFromFEN(FEN);
+    FENInterpreter.LoadGameDataFromFEN(FEN);
+    BoardVisualizer.VisualizeBoardFromSquares();
 }
 BoardVisualizer.VisualizeBoardForSystemCoords();
 
-MoveValidator.GetAllPossibleTargets(0, 4);
+MoveValidator.GetAllPossibleTargets(7, 2);
+MoveValidator.IsPathFree(7, 2);

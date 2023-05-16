@@ -72,7 +72,7 @@ public static class MoveValidator
         return false;
     }
 
-    public static List<(int, int)> GetAllPossibleTargets(int startRank, int startFile)
+    public static List<(int rank, int file)> GetAllPossibleTargets(int startRank, int startFile)
     {
         var _possibleTargets = new List<(int rank, int file)> { };
         var piece = Board.GetPiece(startRank, startFile);
@@ -86,11 +86,32 @@ public static class MoveValidator
                 }
             }
         }
-        Console.WriteLine($"Possible targets for {piece.AsFENChar()} at [{startRank}:{startFile}] ");
+        Console.WriteLine($"Possible targets for {piece.AsFENChar()} at [{startRank}:{startFile}]: ");
         foreach ((int rank, int file) target in _possibleTargets)
         {
             Console.Write($"({target.rank}, {target.file}),\n");
         }
         return _possibleTargets;
+    }
+
+    public static List<(int rank, int file)> IsPathFree(int startRank, int startFile)
+    {
+        var _possibleTargetsRaw = GetAllPossibleTargets(startRank, startFile);
+        var _possibleTargetsOccupied = new List<(int rank, int file)> { };
+        var piece = Board.GetPiece(startRank, startFile);
+
+        foreach ((int rank, int file) in _possibleTargetsRaw)
+        {
+            if (Board.IsOccupied(rank, file))
+            {
+                _possibleTargetsOccupied.Add((rank, file));
+            }
+        }
+        Console.WriteLine($"Possible targets that are occupied for {piece.AsFENChar()} at [{startRank}:{startFile}]: ");
+        foreach ((int rank, int file) occupiedTarget in _possibleTargetsOccupied)
+        {
+            Console.WriteLine($"({occupiedTarget.rank}, {occupiedTarget.file}),\n");
+        }
+        return _possibleTargetsOccupied;
     }
 }

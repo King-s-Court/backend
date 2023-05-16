@@ -37,8 +37,8 @@ public static class Board
         return Squares[rank, file].SquarePiece;
     }
 
-    public static bool HasPiece(int rank, int file, Piece piece)
+    public static bool IsOccupied(int rank, int file)
     {
-        return Squares[rank, file].SquarePiece == piece;
+        return GetPiece(rank, file) is not null;
     }
 }
