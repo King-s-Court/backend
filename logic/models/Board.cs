@@ -3,7 +3,7 @@
 public static class Board
 {
     // [ranks, files]
-    public static readonly Square[,] Squares = new Square[8, 8];
+    public static Square[,] Squares = new Square[8, 8];
     public static string ToMove { get; set; }
     public static string CastlingRights { get; set; }
     public static string EnPassant { get; set; }

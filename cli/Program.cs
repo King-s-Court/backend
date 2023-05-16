@@ -8,7 +8,7 @@ string? FEN = Console.ReadLine();
 
 if (string.IsNullOrEmpty(FEN))
 {
-	Console.WriteLine("FEN is null");
+	Console.WriteLine("Using default FEN");
 	FENInterpreter.LoadBoardFromFEN();
 	FENInterpreter.LoadGameDataFromFEN();
 	BoardVisualizer.VisualizeBoardFromSquares();
@@ -19,10 +19,11 @@ else if (!FENInterpreter.IsValidFEN(FEN))
 }
 else
 {
-	Console.WriteLine($"Reading {FEN}");
+	Console.WriteLine($"Using {FEN}");
 	FENInterpreter.LoadBoardFromFEN(FEN);
 	FENInterpreter.LoadGameDataFromFEN(FEN);
 	BoardVisualizer.VisualizeBoardFromSquares();
 }
+BoardVisualizer.VisualizeBoardForSystemCoords();
 
-
+MoveValidator.GetAllPossibleTargets(0, 4);
