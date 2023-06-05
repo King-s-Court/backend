@@ -86,15 +86,10 @@ public static class MoveValidator
                 }
             }
         }
-        Console.WriteLine($"Possible targets for {piece.AsFENChar()} at [{startRank}:{startFile}]: ");
-        foreach ((int rank, int file) target in _possibleTargets)
-        {
-            Console.Write($"({target.rank}, {target.file}),\n");
-        }
         return _possibleTargets;
     }
 
-    public static List<(int rank, int file)> IsPathFree(int startRank, int startFile)
+    public static List<(int rank, int file)> PathOccupants(int startRank, int startFile)
     {
         var _possibleTargetsRaw = GetAllPossibleTargets(startRank, startFile);
         var _possibleTargetsOccupied = new List<(int rank, int file)> { };
@@ -107,11 +102,23 @@ public static class MoveValidator
                 _possibleTargetsOccupied.Add((rank, file));
             }
         }
-        Console.WriteLine($"Possible targets that are occupied for {piece.AsFENChar()} at [{startRank}:{startFile}]: ");
-        foreach ((int rank, int file) occupiedTarget in _possibleTargetsOccupied)
-        {
-            Console.WriteLine($"({occupiedTarget.rank}, {occupiedTarget.file}),\n");
-        }
         return _possibleTargetsOccupied;
+    }
+
+    public static string GetMoveDirection(int startRank, int startFile, int targetRank, int targetFile)
+    {
+        Piece movingPiece = Board.GetPiece(startRank, startFile);
+        bool rankChange = startRank != targetRank;
+        bool fileChange = startFile != targetFile;
+
+        if (movingPiece.PieceType is not PieceType.Knight)
+        {
+
+        }
+        else
+        {
+
+        }
+        return "kiss me";
     }
 }

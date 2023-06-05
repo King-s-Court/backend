@@ -41,4 +41,40 @@ public abstract class Piece
         }
         return ' ';
     }
+
+    public string AsString()
+    {
+        if (this.PieceColor == PieceColor.White)
+        {
+            return this.PieceType switch
+            {
+                PieceType.Juicer => "Juicer",
+                PieceType.Rook => "Rook",
+                PieceType.Knight => "Knight",
+                PieceType.Bishop => "Bishop",
+                PieceType.Queen => "Queen",
+                PieceType.King => "King",
+                _ => "",
+            };
+        }
+        else if (this.PieceColor == PieceColor.Black)
+        {
+            return this.PieceType switch
+            {
+                PieceType.Juicer => "juicer",
+                PieceType.Rook => "rook",
+                PieceType.Knight => "knight",
+                PieceType.Bishop => "bishop",
+                PieceType.Queen => "queen",
+                PieceType.King => "king",
+                _ => "",
+            };
+        }
+        return "";
+    }
+
+    public PieceColor GetColor()
+    {
+        return this.PieceColor;
+    }
 }
