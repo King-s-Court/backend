@@ -47,7 +47,7 @@ public class FENInterpreter
     /// Interprets FEN string and populates Board.Squares accordingly.
     /// </summary>
 
-    public static void LoadBoardFromFEN(string FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+    public static void LoadBoardFromFEN(Board board, string FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
     {
         if (IsValidFEN(FEN))
         {
@@ -67,7 +67,7 @@ public class FENInterpreter
                 }
                 else
                 {
-                    Board.AddPiece(rank, file, PieceCharDictionary._pieceFromChar[symbol]);
+                    board.AddPiece(rank, file, PieceCharDictionary._pieceFromChar[symbol]);
                     file++;
                 }
             }
@@ -78,15 +78,15 @@ public class FENInterpreter
     /// Interprets FEN string and populates Board.ToMove, Board.CastlingRights and Board.EnPassant accordingly.
     /// </summary>
 
-    public static void LoadGameDataFromFEN(string FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+    public static void LoadGameDataFromFEN(Board board, string FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
     {
         if (IsValidFEN(FEN))
         {
-            Board.ToMove = FEN.Split(' ')[1];
-            Board.CastlingRights = FEN.Split(' ')[2];
-            Board.EnPassant = FEN.Split(' ')[3];
-            Board.HalfmoveClock = FEN.Split(' ')[4];
-            Board.FullmoveClock = FEN.Split(' ')[5];
+            board.ToMove = FEN.Split(' ')[1];
+            board.CastlingRights = FEN.Split(' ')[2];
+            board.EnPassant = FEN.Split(' ')[3];
+            board.HalfmoveClock = FEN.Split(' ')[4];
+            board.FullmoveClock = FEN.Split(' ')[5];
         }
     }
 }

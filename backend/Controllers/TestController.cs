@@ -1,5 +1,7 @@
-namespace backend.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using common.models;
+
+namespace backend.Controllers;
 
 [ApiController]
 [Route("[controller]")]

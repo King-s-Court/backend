@@ -10,74 +10,75 @@ namespace Tests
     // These tests are ran on a board in the intial state, i.e. the following fen string rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1
     public class BoardTests
     {
+        Board testBoard = new();
         [Fact]
         public void CheckWhitePiecePos()
         {
-            FENInterpreter.LoadBoardFromFEN();
+            FENInterpreter.LoadBoardFromFEN(testBoard);
 
-            Assert.Equal(PieceType.Rook, Board.GetPiece(7, 0).PieceType);
-            Assert.Equal(PieceColor.White, Board.GetPiece(7, 0).PieceColor);
-            Assert.Equal(PieceType.Knight, Board.GetPiece(7, 1).PieceType);
-            Assert.Equal(PieceColor.White, Board.GetPiece(7, 1).PieceColor);
-            Assert.Equal(PieceType.Bishop, Board.GetPiece(7, 2).PieceType);
-            Assert.Equal(PieceColor.White, Board.GetPiece(7, 2).PieceColor);
-            Assert.Equal(PieceType.Queen, Board.GetPiece(7, 3).PieceType);
-            Assert.Equal(PieceColor.White, Board.GetPiece(7, 3).PieceColor);
-            Assert.Equal(PieceType.King, Board.GetPiece(7, 4).PieceType);
-            Assert.Equal(PieceColor.White, Board.GetPiece(7, 4).PieceColor);
-            Assert.Equal(PieceType.Bishop, Board.GetPiece(7, 5).PieceType);
-            Assert.Equal(PieceColor.White, Board.GetPiece(7, 5).PieceColor);
-            Assert.Equal(PieceType.Knight, Board.GetPiece(7, 6).PieceType);
-            Assert.Equal(PieceColor.White, Board.GetPiece(7, 6).PieceColor);
-            Assert.Equal(PieceType.Rook, Board.GetPiece(7, 7).PieceType);
-            Assert.Equal(PieceColor.White, Board.GetPiece(7, 7).PieceColor);
+            Assert.Equal(PieceType.Rook, testBoard.GetPiece(7, 0).PieceType);
+            Assert.Equal(PieceColor.White, testBoard.GetPiece(7, 0).PieceColor);
+            Assert.Equal(PieceType.Knight, testBoard.GetPiece(7, 1).PieceType);
+            Assert.Equal(PieceColor.White, testBoard.GetPiece(7, 1).PieceColor);
+            Assert.Equal(PieceType.Bishop, testBoard.GetPiece(7, 2).PieceType);
+            Assert.Equal(PieceColor.White, testBoard.GetPiece(7, 2).PieceColor);
+            Assert.Equal(PieceType.Queen, testBoard.GetPiece(7, 3).PieceType);
+            Assert.Equal(PieceColor.White, testBoard.GetPiece(7, 3).PieceColor);
+            Assert.Equal(PieceType.King, testBoard.GetPiece(7, 4).PieceType);
+            Assert.Equal(PieceColor.White, testBoard.GetPiece(7, 4).PieceColor);
+            Assert.Equal(PieceType.Bishop, testBoard.GetPiece(7, 5).PieceType);
+            Assert.Equal(PieceColor.White, testBoard.GetPiece(7, 5).PieceColor);
+            Assert.Equal(PieceType.Knight, testBoard.GetPiece(7, 6).PieceType);
+            Assert.Equal(PieceColor.White, testBoard.GetPiece(7, 6).PieceColor);
+            Assert.Equal(PieceType.Rook, testBoard.GetPiece(7, 7).PieceType);
+            Assert.Equal(PieceColor.White, testBoard.GetPiece(7, 7).PieceColor);
 
             for (int i = 0; i < 8; i++)
             {
-                Assert.Equal(PieceType.Juicer, Board.GetPiece(6, i).PieceType);
-                Assert.Equal(PieceColor.White, Board.GetPiece(6, i).PieceColor);
+                Assert.Equal(PieceType.Juicer, testBoard.GetPiece(6, i).PieceType);
+                Assert.Equal(PieceColor.White, testBoard.GetPiece(6, i).PieceColor);
             }
         }
 
         [Fact]
         public void CheckBlackPiecePos()
         {
-            FENInterpreter.LoadBoardFromFEN();
+            FENInterpreter.LoadBoardFromFEN(testBoard);
 
-            Assert.Equal(PieceType.Rook, Board.GetPiece(0, 0).PieceType);
-            Assert.Equal(PieceColor.Black, Board.GetPiece(0, 0).PieceColor);
-            Assert.Equal(PieceType.Knight, Board.GetPiece(0, 1).PieceType);
-            Assert.Equal(PieceColor.Black, Board.GetPiece(0, 1).PieceColor);
-            Assert.Equal(PieceType.Bishop, Board.GetPiece(0, 2).PieceType);
-            Assert.Equal(PieceColor.Black, Board.GetPiece(0, 2).PieceColor);
-            Assert.Equal(PieceType.Queen, Board.GetPiece(0, 3).PieceType);
-            Assert.Equal(PieceColor.Black, Board.GetPiece(0, 3).PieceColor);
-            Assert.Equal(PieceType.King, Board.GetPiece(0, 4).PieceType);
-            Assert.Equal(PieceColor.Black, Board.GetPiece(0, 4).PieceColor);
-            Assert.Equal(PieceType.Bishop, Board.GetPiece(0, 5).PieceType);
-            Assert.Equal(PieceColor.Black, Board.GetPiece(0, 5).PieceColor);
-            Assert.Equal(PieceType.Knight, Board.GetPiece(0, 6).PieceType);
-            Assert.Equal(PieceColor.Black, Board.GetPiece(0, 6).PieceColor);
-            Assert.Equal(PieceType.Rook, Board.GetPiece(0, 7).PieceType);
-            Assert.Equal(PieceColor.Black, Board.GetPiece(0, 7).PieceColor);
+            Assert.Equal(PieceType.Rook, testBoard.GetPiece(0, 0).PieceType);
+            Assert.Equal(PieceColor.Black, testBoard.GetPiece(0, 0).PieceColor);
+            Assert.Equal(PieceType.Knight, testBoard.GetPiece(0, 1).PieceType);
+            Assert.Equal(PieceColor.Black, testBoard.GetPiece(0, 1).PieceColor);
+            Assert.Equal(PieceType.Bishop, testBoard.GetPiece(0, 2).PieceType);
+            Assert.Equal(PieceColor.Black, testBoard.GetPiece(0, 2).PieceColor);
+            Assert.Equal(PieceType.Queen, testBoard.GetPiece(0, 3).PieceType);
+            Assert.Equal(PieceColor.Black, testBoard.GetPiece(0, 3).PieceColor);
+            Assert.Equal(PieceType.King, testBoard.GetPiece(0, 4).PieceType);
+            Assert.Equal(PieceColor.Black, testBoard.GetPiece(0, 4).PieceColor);
+            Assert.Equal(PieceType.Bishop, testBoard.GetPiece(0, 5).PieceType);
+            Assert.Equal(PieceColor.Black, testBoard.GetPiece(0, 5).PieceColor);
+            Assert.Equal(PieceType.Knight, testBoard.GetPiece(0, 6).PieceType);
+            Assert.Equal(PieceColor.Black, testBoard.GetPiece(0, 6).PieceColor);
+            Assert.Equal(PieceType.Rook, testBoard.GetPiece(0, 7).PieceType);
+            Assert.Equal(PieceColor.Black, testBoard.GetPiece(0, 7).PieceColor);
 
             for (int i = 0; i < 8; i++)
             {
-                Assert.Equal(PieceType.Juicer, Board.GetPiece(1, i).PieceType);
-                Assert.Equal(PieceColor.Black, Board.GetPiece(1, i).PieceColor);
+                Assert.Equal(PieceType.Juicer, testBoard.GetPiece(1, i).PieceType);
+                Assert.Equal(PieceColor.Black, testBoard.GetPiece(1, i).PieceColor);
             }
         }
 
         [Fact]
         public void CheckEmptyPos()
         {
-            FENInterpreter.LoadBoardFromFEN();
+            FENInterpreter.LoadBoardFromFEN(testBoard);
 
             for (int rank = 2; rank < 6; rank++)
             {
                 for (int file = 0; file < 8; file++)
                 {
-                    Assert.Null(Board.GetPiece(rank, file));
+                    Assert.Null(testBoard.GetPiece(rank, file));
                 }
             }
         }
@@ -348,16 +349,16 @@ namespace Tests
             };
 
             // correct white queen side rook moves
-            Assert.Equal(_whiteQueenSideRookExpectedTargets, MoveValidator.GetAllPossibleTargets(7, 0));
+            Assert.Equal(_whiteQueenSideRookExpectedTargets, MoveValidator.GetAllPossibleTargets(7, 0, testBoard));
 
             // correct white king side rook moves
-            Assert.Equal(_whiteKingSideRookExpectedTargets, MoveValidator.GetAllPossibleTargets(7, 7));
+            Assert.Equal(_whiteKingSideRookExpectedTargets, MoveValidator.GetAllPossibleTargets(7, 7, testBoard));
 
             // correct black queen side rook moves
-            Assert.Equal(_blackQueenSideRookExpectedTargets, MoveValidator.GetAllPossibleTargets(0, 0));
+            Assert.Equal(_blackQueenSideRookExpectedTargets, MoveValidator.GetAllPossibleTargets(0, 0, testBoard));
 
             // correct black king side rook moves
-            Assert.Equal(_blackKingSideRookExpectedTargets, MoveValidator.GetAllPossibleTargets(0, 7));
+            Assert.Equal(_blackKingSideRookExpectedTargets, MoveValidator.GetAllPossibleTargets(0, 7, testBoard));
         }
 
         [Fact]
@@ -396,16 +397,16 @@ namespace Tests
             };
 
             // correct white queen side knight moves
-            Assert.Equal(_whiteQueenSideKnightExpected, MoveValidator.GetAllPossibleTargets(7, 1));
+            Assert.Equal(_whiteQueenSideKnightExpected, MoveValidator.GetAllPossibleTargets(7, 1, testBoard));
 
             // correct white king side knight moves
-            Assert.Equal(_whiteKingSideKnightExpected, MoveValidator.GetAllPossibleTargets(7, 6));
+            Assert.Equal(_whiteKingSideKnightExpected, MoveValidator.GetAllPossibleTargets(7, 6, testBoard));
 
             // correct black queen side knight moves
-            Assert.Equal(_blackQueenSideKnightExpected, MoveValidator.GetAllPossibleTargets(0, 1));
+            Assert.Equal(_blackQueenSideKnightExpected, MoveValidator.GetAllPossibleTargets(0, 1, testBoard));
 
             // correct black king side knight moves
-            Assert.Equal(_blackKingSideKnightExpected, MoveValidator.GetAllPossibleTargets(0, 6));
+            Assert.Equal(_blackKingSideKnightExpected, MoveValidator.GetAllPossibleTargets(0, 6, testBoard));
         }
 
         [Fact]
@@ -459,16 +460,16 @@ namespace Tests
             };
 
             // correct white queen side bishop moves
-            Assert.Equal(_whiteQueenSideBishopExpected, MoveValidator.GetAllPossibleTargets(7, 2));
+            Assert.Equal(_whiteQueenSideBishopExpected, MoveValidator.GetAllPossibleTargets(7, 2, testBoard));
 
             // correct white king side bishop moves
-            Assert.Equal(_whiteKingSideBishopExpected, MoveValidator.GetAllPossibleTargets(7, 5));
+            Assert.Equal(_whiteKingSideBishopExpected, MoveValidator.GetAllPossibleTargets(7, 5, testBoard));
 
             // correct black queen side bishop moves
-            Assert.Equal(_blackQueenSideBishopExpected, MoveValidator.GetAllPossibleTargets(0, 2));
+            Assert.Equal(_blackQueenSideBishopExpected, MoveValidator.GetAllPossibleTargets(0, 2, testBoard));
 
             // correct black king side bishop moves
-            Assert.Equal(_blackKingSideBishopExpected, MoveValidator.GetAllPossibleTargets(0, 5));
+            Assert.Equal(_blackKingSideBishopExpected, MoveValidator.GetAllPossibleTargets(0, 5, testBoard));
         }
 
         [Fact]
@@ -527,10 +528,10 @@ namespace Tests
             };
 
             // correct white queen moves
-            Assert.Equal(_whiteQueenExpected, MoveValidator.GetAllPossibleTargets(7, 3));
+            Assert.Equal(_whiteQueenExpected, MoveValidator.GetAllPossibleTargets(7, 3, testBoard));
 
             // correct black queen moves
-            Assert.Equal(_blackQueenExpected, MoveValidator.GetAllPossibleTargets(0, 3));
+            Assert.Equal(_blackQueenExpected, MoveValidator.GetAllPossibleTargets(0, 3, testBoard));
         }
 
         [Fact]
@@ -557,10 +558,10 @@ namespace Tests
             };
 
             // correct white king moves
-            Assert.Equal(_whiteKingExpected, MoveValidator.GetAllPossibleTargets(7, 4));
+            Assert.Equal(_whiteKingExpected, MoveValidator.GetAllPossibleTargets(7, 4, testBoard));
 
             // correct black king moves
-            Assert.Equal(_blackKingExpected, MoveValidator.GetAllPossibleTargets(0, 4));
+            Assert.Equal(_blackKingExpected, MoveValidator.GetAllPossibleTargets(0, 4, testBoard));
         }
     }
 }

@@ -2,17 +2,17 @@
 
 namespace common.models;
 
-public static class Board
+public class Board
 {
 	// [ranks, files]
-	private static Square[,] Squares = new Square[8, 8];
-	public static string ToMove { get; set; }
-	public static string CastlingRights { get; set; }
-	public static string EnPassant { get; set; }
-	public static string HalfmoveClock { get; set; }
-	public static string FullmoveClock { get; set; }
+	private Square[,] Squares = new Square[8, 8];
+	public string ToMove { get; set; }
+	public string CastlingRights { get; set; }
+	public string EnPassant { get; set; }
+	public string HalfmoveClock { get; set; }
+	public string FullmoveClock { get; set; }
 
-	static Board()
+	public Board()
 	{
 		ToMove = "w";
 		CastlingRights = "KQkq";
@@ -24,29 +24,37 @@ public static class Board
 				Squares[rank, file] = new Square();
 			}
 		}
+		HalfmoveClock = "0";
+		FullmoveClock = "1";
 	}
 
-	public static Square[,] GetBoardSquares()
+	public Board CreateBoard()
+	{
+		Board newBoard = new();
+		return newBoard;
+	}
+
+	public Square[,] GetBoardSquares()
 	{
 		return Squares;
 	}
 
-	public static void AddPiece(int rank, int file, Piece piece)
+	public void AddPiece(int rank, int file, Piece piece)
 	{
 		Squares[rank, file].SquarePiece = piece;
 	}
 
-	public static Piece GetPiece(int rank, int file)
+	public Piece GetPiece(int rank, int file)
 	{
 		return Squares[rank, file].SquarePiece;
 	}
 
-	public static bool IsOccupied(int rank, int file)
+	public bool IsOccupied(int rank, int file)
 	{
 		return GetPiece(rank, file) is not null;
 	}
 
-	public static string AsFENString()
+	public string AsFENString()
 	{
 		StringBuilder fenBuilder = new();
 
@@ -59,7 +67,7 @@ public static class Board
 				{
 					emptySquares++;
 				}
-				
+
 				else
 				{
 					if (emptySquares > 0)
