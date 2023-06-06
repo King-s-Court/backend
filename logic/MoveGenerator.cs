@@ -5,5 +5,5 @@ namespace logic;
 
 public static class MoveGenerator
 {
-    
+
 }

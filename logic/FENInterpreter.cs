@@ -6,6 +6,11 @@ namespace logic;
 
 public class FENInterpreter
 {
+
+    /// <summary>
+    /// Validates whether a FEN string is valid.
+    /// </summary>
+
     public static bool IsValidFEN(string fen)
     {
         string[] fenParts = fen.Split(' ');
@@ -40,8 +45,6 @@ public class FENInterpreter
 
     /// <summary>
     /// Interprets FEN string and populates Board.Squares accordingly.
-    /// <param name="FEN">
-    ///  </param>
     /// </summary>
 
     public static void LoadBoardFromFEN(string FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
@@ -73,8 +76,6 @@ public class FENInterpreter
 
     /// <summary>
     /// Interprets FEN string and populates Board.ToMove, Board.CastlingRights and Board.EnPassant accordingly.
-    /// <param name="FEN">
-    ///  </param>
     /// </summary>
 
     public static void LoadGameDataFromFEN(string FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
@@ -84,6 +85,8 @@ public class FENInterpreter
             Board.ToMove = FEN.Split(' ')[1];
             Board.CastlingRights = FEN.Split(' ')[2];
             Board.EnPassant = FEN.Split(' ')[3];
+            Board.HalfmoveClock = FEN.Split(' ')[4];
+            Board.FullmoveClock = FEN.Split(' ')[5];
         }
     }
 }
