@@ -8,8 +8,10 @@ namespace backend.Controllers;
 public class TestController : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetAll()
+    public IActionResult GetFEN()
     {
-        return Ok();
+        string fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w - 0 1";
+        return Ok(fen);
+
     }
 }
