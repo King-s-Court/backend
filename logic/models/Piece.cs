@@ -17,7 +17,7 @@ public abstract class Piece
         {
             return this.PieceType switch
             {
-                PieceType.Juicer => 'J',
+                PieceType.Juicer => 'P',
                 PieceType.Rook => 'R',
                 PieceType.Knight => 'N',
                 PieceType.Bishop => 'B',
@@ -30,7 +30,7 @@ public abstract class Piece
         {
             return this.PieceType switch
             {
-                PieceType.Juicer => 'j',
+                PieceType.Juicer => 'p',
                 PieceType.Rook => 'r',
                 PieceType.Knight => 'n',
                 PieceType.Bishop => 'b',
