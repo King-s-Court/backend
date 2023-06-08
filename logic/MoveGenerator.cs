@@ -1,4 +1,4 @@
-﻿using common.models;
+using common.models;
 using common.models.pieces;
 
 namespace logic;
