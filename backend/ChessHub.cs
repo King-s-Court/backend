@@ -45,12 +45,12 @@ public class ChessHub : Hub
         await Clients.Group(gameId).SendAsync("PlayerJoined", Context.ConnectionId);
     }
 
-    public async Task SendMove(int startRank, int startFile, int targetRank, int targetFile, string gameId)
+    public async Task SendMove(string fen, string gameId)
     {
         // Process move that was made
         
         // Send back move of the opponent
-        var newFen = _moveGenerator.GenerateMove(startRank, startFile, targetRank, targetFile);
+        var newFen = _moveGenerator.GenerateMove(fen);
         
         await Clients.Group(gameId).SendAsync("ReceiveMove", newFen);
     }

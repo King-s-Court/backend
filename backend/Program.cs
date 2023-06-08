@@ -25,6 +25,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddSingleton<QueueManager>();
+builder.Services.AddTransient<logic.MoveGenerator>();
 
 var app = builder.Build();
 
