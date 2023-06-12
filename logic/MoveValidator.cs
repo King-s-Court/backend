@@ -105,20 +105,24 @@ public static class MoveValidator
         return _possibleTargetsOccupied;
     }
 
-    public static string GetMoveDirection(int startRank, int startFile, int targetRank, int targetFile, Board board)
-    {
-        Piece movingPiece = board.GetPiece(startRank, startFile);
-        bool rankChange = startRank != targetRank;
-        bool fileChange = startFile != targetFile;
+    /*public static string GetMoveDirection(int startRank, int startFile, int targetRank, int targetFile, Board board)
+	{
+		Piece movingPiece = board.GetPiece(startRank, startFile);
+		int rankDiff = targetRank - startRank;
+		int fileDiff = targetFile - startFile;
 
-        if (movingPiece.PieceType is not PieceType.Knight)
-        {
+		if (rankDiff == 0 && fileDiff == 0)
+		{
+			throw new InvalidOperationException("Invalid move");
+		}
+		if (movingPiece.PieceType is not PieceType.Knight)
+		{
+			if()
+		}
+		else
+		{
+			return "knight";
+		}
 
-        }
-        else
-        {
-
-        }
-        return "kiss me";
-    }
+	}*/
 }
