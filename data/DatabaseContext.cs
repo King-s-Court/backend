@@ -1,20 +1,23 @@
 ﻿using data.models;
 using Microsoft.EntityFrameworkCore;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
-namespace data;
-
-public class DatabaseContext : DbContext
+namespace data
 {
-    public DbSet<User> Users { get; set; }
-    public DbSet<Game> Games { get; set; }
-
-    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
-    { }
-    
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public class DatabaseContext : DbContext
     {
-        string connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING") ??
-                                  "Server=localhost;Database=kingscourt;User=root;Password=root;";
-        optionsBuilder.UseSqlServer(connectionString);
+        // dotnet ef migrate add InitialCreate -p "../data"
+        public DbSet<User> Users { get; set; }
+        public DbSet<Game> Games { get; set; }
+
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+        { }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING") ??
+                                      "Server=localhost;Port=3306;Database=kingscourt;User=root;Password=root;";
+            optionsBuilder.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 26)));
+        }
     }
 }
