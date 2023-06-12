@@ -4,94 +4,100 @@ namespace common.models;
 
 public class Board
 {
-	// [ranks, files]
-	private Square[,] Squares = new Square[8, 8];
-	public string ToMove { get; set; }
-	public string CastlingRights { get; set; }
-	public string EnPassant { get; set; }
-	public string HalfmoveClock { get; set; }
-	public string FullmoveClock { get; set; }
+    // [ranks, files]
+    private Square[,] Squares = new Square[8, 8];
+    public string ToMove { get; set; }
+    public string CastlingRights { get; set; }
+    public string EnPassant { get; set; }
+    public string HalfmoveClock { get; set; }
+    public string FullmoveClock { get; set; }
 
-	public Board()
-	{
-		ToMove = "w";
-		CastlingRights = "KQkq";
-		EnPassant = "-";
-		for (int rank = 0; rank < 8; rank++)
-		{
-			for (int file = 0; file < 8; file++)
-			{
-				Squares[rank, file] = new Square();
-			}
-		}
-		HalfmoveClock = "0";
-		FullmoveClock = "1";
-	}
+    public Board()
+    {
+        ToMove = "w";
+        CastlingRights = "KQkq";
+        EnPassant = "-";
+        for (int rank = 0; rank < 8; rank++)
+        {
+            for (int file = 0; file < 8; file++)
+            {
+                Squares[rank, file] = new Square();
+            }
+        }
+        HalfmoveClock = "0";
+        FullmoveClock = "1";
+    }
 
-	public Board CreateBoard()
-	{
-		Board newBoard = new();
-		return newBoard;
-	}
+    public Square[,] GetBoardSquares()
+    {
+        return Squares;
+    }
 
-	public Square[,] GetBoardSquares()
-	{
-		return Squares;
-	}
+    public void AddPiece(int rank, int file, Piece piece)
+    {
+        Squares[rank, file].SquarePiece = piece;
+    }
 
-	public void AddPiece(int rank, int file, Piece piece)
-	{
-		Squares[rank, file].SquarePiece = piece;
-	}
+    public Piece? GetPiece(int rank, int file)
+    {
+        return Squares[rank, file].SquarePiece;
+    }
 
-	public Piece GetPiece(int rank, int file)
-	{
-		return Squares[rank, file].SquarePiece;
-	}
+    public void DestroyPiece(int rank, int file)
+    {
+        Squares[rank, file].SquarePiece = null;
+    }
 
-	public bool IsOccupied(int rank, int file)
-	{
-		return GetPiece(rank, file) is not null;
-	}
+    public void MovePiece(int startRank, int startFile, int targetRank, int targetFile)
+    {
+        Piece piece = GetPiece(startRank, startFile);
+        AddPiece(targetRank, targetFile, piece);
+        DestroyPiece(startRank, startFile);
+    }
 
-	public string AsFENString()
-	{
-		StringBuilder fenBuilder = new();
+    public bool IsOccupied(int rank, int file)
+    {
+        return GetPiece(rank, file) is not null;
+    }
 
-		for (int rank = 0; rank < 8; rank++)
-		{
-			int emptySquares = 0;
-			for (int file = 0; file < 8; file++)
-			{
-				if (!IsOccupied(rank, file))
-				{
-					emptySquares++;
-				}
+    public string AsFENString()
+    {
+        StringBuilder fenBuilder = new();
 
-				else
-				{
-					if (emptySquares > 0)
-					{
-						fenBuilder.Append(emptySquares);
-						emptySquares = 0;
-					}
-					fenBuilder.Append(GetPiece(rank, file).AsFENChar());
-				}
-			}
+        for (int rank = 0; rank < 8; rank++)
+        {
+            int emptySquares = 0;
+            for (int file = 0; file < 8; file++)
+            {
+                if (!IsOccupied(rank, file))
+                {
+                    emptySquares++;
+                }
 
-			if (emptySquares > 0)
-			{
-				fenBuilder.Append(emptySquares);
-			}
+                else
+                {
+                    if (emptySquares > 0)
+                    {
+                        fenBuilder.Append(emptySquares);
+                        emptySquares = 0;
+                    }
+                    fenBuilder.Append(GetPiece(rank, file).AsFENChar());
+                }
+            }
 
-			if (rank < 7)
-			{
-				fenBuilder.Append("/");
-			}
+            if (emptySquares > 0)
+            {
+                fenBuilder.Append(emptySquares);
+            }
 
-		}
-		fenBuilder.Append($" {ToMove} {CastlingRights} {EnPassant} {HalfmoveClock} {FullmoveClock}");
-		return fenBuilder.ToString();
+            if (rank < 7)
+            {
+                fenBuilder.Append("/");
+            }
 
-	}
+        }
+        fenBuilder.Append($" {ToMove} {CastlingRights} {EnPassant} {HalfmoveClock} {FullmoveClock}");
+        return fenBuilder.ToString();
+
+    }
 }

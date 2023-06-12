@@ -39,7 +39,7 @@ public class BoardVisualizer
             Write(CastlingRightsDictionary._castlingRights[symbol] + '\n');
         }
         Write("\n");
-        Write($"En passant target square: \n {board.EnPassant}");
+        Write($"En passant target square: \n {board.EnPassant}\n");
 
     }
 

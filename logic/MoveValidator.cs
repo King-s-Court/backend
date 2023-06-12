@@ -6,14 +6,15 @@ namespace logic;
 public static class MoveValidator
 {
     // General validation of a move that will contain all other checks
-    public static bool IsValid(Piece piece, int startRank, int startFile, int targetRank, int targetFile)
+    public static bool IsValid(Board board, int startRank, int startFile, int targetRank, int targetFile)
     {
-        return IsValidTypeMove(piece, startRank, startFile, targetRank, targetFile);
+        return IsValidTypeMove(board, startRank, startFile, targetRank, targetFile);
     }
 
     // Returns true if the piece can move according to its type if it was alone on the chess board
-    public static bool IsValidTypeMove(Piece piece, int startRank, int startFile, int targetRank, int targetFile)
+    public static bool IsValidTypeMove(Board board, int startRank, int startFile, int targetRank, int targetFile)
     {
+        Piece piece = board.GetPiece(startRank, startFile);
         // Combine indexes of the 2D array Squares to get a single number index for each square
         var startIndex = startRank * 8 + startFile;
         var targetIndex = targetRank * 8 + targetFile;
@@ -75,12 +76,11 @@ public static class MoveValidator
     public static List<(int rank, int file)> GetAllPossibleTargets(int startRank, int startFile, Board board)
     {
         var _possibleTargets = new List<(int rank, int file)> { };
-        var piece = board.GetPiece(startRank, startFile);
         for (int targetRank = 0; targetRank < 8; targetRank++)
         {
             for (int targetFile = 0; targetFile < 8; targetFile++)
             {
-                if (IsValidTypeMove(piece, startRank, startFile, targetRank, targetFile))
+                if (IsValidTypeMove(board, startRank, startFile, targetRank, targetFile))
                 {
                     _possibleTargets.Add((targetRank, targetFile));
                 }
