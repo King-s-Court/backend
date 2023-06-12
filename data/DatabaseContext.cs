@@ -7,6 +7,7 @@ namespace data
     public class DatabaseContext : DbContext
     {
         // dotnet ef migrate add InitialCreate -p "../data"
+        // dotnet ef database update
         public DbSet<User> Users { get; set; }
         public DbSet<Game> Games { get; set; }
 
