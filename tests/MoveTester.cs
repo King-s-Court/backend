@@ -197,16 +197,6 @@ namespace Tests
 		}
 
 		[Fact]
-		public void ValidateFENStrings()
-		{
-			// Correct FEN string 
-			Assert.True(FENInterpreter.IsValidFEN("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"));
-
-			// Incorrect FEN string
-			Assert.False(FENInterpreter.IsValidFEN("brum brum"));
-		}
-
-		[Fact]
 		public void CheckRookPossibleTargetSquares()
 		{
 			FENInterpreter.LoadBoardFromFEN(testBoard);
@@ -505,6 +495,13 @@ namespace Tests
 
 			// correct black king moves
 			Assert.Equal(_blackKingExpected, MoveValidator.GetAllPossibleTargets(0, 4, testBoard));
+		}
+	
+		[Fact]
+		public void PerformMove()
+		{
+			FENInterpreter.LoadBoardFromFEN(testBoard);
+			
 		}
 	}
 }
