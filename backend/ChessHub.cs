@@ -8,9 +8,11 @@ public class ChessHub : Hub
 {
 
     private readonly QueueManager _queueManager;
+    private readonly MoveGenerator _moveGenerator;
     
-    public ChessHub(QueueManager queueManager) {
+    public ChessHub(QueueManager queueManager, MoveGenerator moveGenerator) {
         _queueManager = queueManager;
+        _moveGenerator = moveGenerator;
     }
 
     public async Task JoinQueue(GameModeEnum gameModeType, int timeLimit, int timeIncrement)
@@ -35,4 +37,22 @@ public class ChessHub : Hub
 
         _queueManager.RemovePlayer(player);
     }
+
+    public async Task JoinGame(string gameId)
+    {
+        Console.WriteLine(gameId);
+        await Groups.AddToGroupAsync(Context.ConnectionId, gameId);
+        await Clients.Group(gameId).SendAsync("PlayerJoined", Context.ConnectionId);
+    }
+
+    public async Task SendMove(string fen, string gameId)
+    {
+        // Process move that was made
+        
+        // Send back move of the opponent
+        var newFen = _moveGenerator.GenerateMove(fen);
+        
+        await Clients.Group(gameId).SendAsync("ReceiveMove", newFen);
+    }
+
 }
