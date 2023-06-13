@@ -14,7 +14,7 @@ public static class MoveValidator
     // Returns true if the piece can move according to its type if it was alone on the chess board
     public static bool IsValidTypeMove(Board board, int startRank, int startFile, int targetRank, int targetFile)
     {
-        Piece piece = board.GetPiece(startRank, startFile);
+        Piece? piece = board.GetPiece(startRank, startFile);
         // Combine indexes of the 2D array Squares to get a single number index for each square
         var startIndex = startRank * 8 + startFile;
         var targetIndex = targetRank * 8 + targetFile;
@@ -23,7 +23,7 @@ public static class MoveValidator
         if (startIndex is >= 0 and < 64 && targetIndex is >= 0 and < 64 && startIndex != targetIndex)
         {
             // Check for piece type first and switch based on that
-            switch (piece.PieceType)
+            switch (piece?.PieceType)
             {
                 case (PieceType.Juicer):
                     if (startFile == targetFile)

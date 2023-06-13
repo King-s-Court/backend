@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using logic;
 
 namespace common.models;
 
@@ -17,6 +18,9 @@ public class Board
         ToMove = "w";
         CastlingRights = "KQkq";
         EnPassant = "-";
+        HalfmoveClock = "0";
+        FullmoveClock = "1";
+
         for (int rank = 0; rank < 8; rank++)
         {
             for (int file = 0; file < 8; file++)
@@ -24,8 +28,6 @@ public class Board
                 Squares[rank, file] = new Square();
             }
         }
-        HalfmoveClock = "0";
-        FullmoveClock = "1";
     }
 
     public Square[,] GetBoardSquares()
@@ -33,7 +35,7 @@ public class Board
         return Squares;
     }
 
-    public void AddPiece(int rank, int file, Piece piece)
+    public void AddPiece(int rank, int file, Piece? piece)
     {
         Squares[rank, file].SquarePiece = piece;
     }
@@ -50,9 +52,16 @@ public class Board
 
     public void MovePiece(int startRank, int startFile, int targetRank, int targetFile)
     {
-        Piece piece = GetPiece(startRank, startFile);
-        AddPiece(targetRank, targetFile, piece);
-        DestroyPiece(startRank, startFile);
+        if (IsOccupied(startRank, startFile))
+        {
+            Piece? piece = GetPiece(startRank, startFile);
+            AddPiece(targetRank, targetFile, piece);
+            DestroyPiece(startRank, startFile);
+        }
+        else
+        {
+            throw new InvalidOperationException("No piece found.");
+        }
     }
 
     public bool IsOccupied(int rank, int file)
@@ -81,7 +90,7 @@ public class Board
                         fenBuilder.Append(emptySquares);
                         emptySquares = 0;
                     }
-                    fenBuilder.Append(GetPiece(rank, file).AsFENChar());
+                    fenBuilder.Append(GetPiece(rank, file)?.AsFENChar());
                 }
             }
 
