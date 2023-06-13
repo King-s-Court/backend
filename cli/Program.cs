@@ -6,12 +6,11 @@ using common.models;
 Console.Clear();
 Console.WriteLine("Please enter a FEN code: ");
 string? FEN = Console.ReadLine();
+Console.Clear();
 Board board = new();
-Console.WriteLine(FEN);
 
 if (string.IsNullOrEmpty(FEN))
 {
-    Console.WriteLine("Using default FEN");
     FENInterpreter.LoadBoardFromFEN(board);
     FENInterpreter.LoadGameDataFromFEN(board);
     BoardVisualizer.VisualizeBoardFromSquares(board);
@@ -24,12 +23,10 @@ else if (!FENInterpreter.IsValidFEN(FEN))
 
 else
 {
-    Console.WriteLine($"Using {FEN}");
     FENInterpreter.LoadBoardFromFEN(board, FEN);
     FENInterpreter.LoadGameDataFromFEN(board, FEN);
     BoardVisualizer.VisualizeBoardFromSquares(board);
 }
-BoardVisualizer.VisualizeBoardForSystemCoords();
 
 // Console.WriteLine("Targeting piece @ RANK: ");
 // int rank = Convert.ToInt32(Console.ReadLine());
@@ -58,7 +55,7 @@ Console.WriteLine("Moving piece target file: ");
 int targetFile = Convert.ToInt32(Console.ReadLine());
 
 Console.Clear();
-Console.WriteLine($"Moving {board.GetPiece(startRank, startFile).AsString()} from |{startRank}:{startFile}| to |{targetRank}:{targetFile}|...\n");
+Console.WriteLine($"Moving {board.GetPiece(startRank, startFile)?.AsString()} from |{startRank}:{startFile}| to |{targetRank}:{targetFile}|...\n");
 MoveGenerator.MakeMove(startRank, startFile, targetRank, targetFile, board);
 
 Console.WriteLine($"Board FEN AFTER completing move: {board.AsFENString()}");
