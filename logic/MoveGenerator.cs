@@ -7,7 +7,7 @@ public static class MoveGenerator
 {
     public static void MakeMove(int startRank, int startFile, int targetRank, int targetFile, Board board)
     {
-        if (board.IsOccupied(startRank, startFile))
+        if (board.IsOccupied(startRank, startFile) && MoveValidator.IsValid(board, startRank, startFile, targetRank, targetFile))
         {
             board.MovePiece(startRank, startFile, targetRank, targetFile);
         }

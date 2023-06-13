@@ -12,6 +12,7 @@ public class BoardVisualizer
     /// </summary>
     public static void VisualizeBoardFromSquares(Board board)
     {
+        WriteLine(" ");
         Write("    0   1   2   3   4   5   6   7");
         for (int rank = 0; rank < 8; rank++)
         {
@@ -39,6 +40,11 @@ public class BoardVisualizer
         }
         Write("\n  ---------------------------------");
         Write("\n    a   b   c   d   e   f   g   h \n\n");
+    }
+
+    public static void VisualizeGameData(Board board)
+    {
+        FENInterpreter.LoadGameDataFromFEN(board);
         Write("Color to move: \n");
         Write(board.ToMove == "w" ? "White\n\n" : "Black\n\n");
         Write("Castling rights: \n");
@@ -48,7 +54,6 @@ public class BoardVisualizer
         }
         Write("\n");
         Write($"En passant target square: \n {board.EnPassant}\n");
-
     }
 
     public static void VisualizeBoardForSystemCoords()

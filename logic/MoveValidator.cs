@@ -73,7 +73,7 @@ public static class MoveValidator
         return false;
     }
 
-    public static List<(int rank, int file)> GetAllPossibleTargets(int startRank, int startFile, Board board)
+    public static List<(int rank, int file)> GetAllPossibleTargets(Board board, int startRank, int startFile)
     {
         var _possibleTargets = new List<(int rank, int file)> { };
         for (int targetRank = 0; targetRank < 8; targetRank++)
@@ -89,9 +89,9 @@ public static class MoveValidator
         return _possibleTargets;
     }
 
-    public static List<(int rank, int file)> PathOccupants(int startRank, int startFile, Board board)
+    public static List<(int rank, int file)> PathOccupants(Board board, int startRank, int startFile)
     {
-        var _possibleTargetsRaw = GetAllPossibleTargets(startRank, startFile, board);
+        var _possibleTargetsRaw = GetAllPossibleTargets(board, startRank, startFile);
         var _possibleTargetsOccupied = new List<(int rank, int file)> { };
         var piece = board.GetPiece(startRank, startFile);
 
@@ -105,24 +105,44 @@ public static class MoveValidator
         return _possibleTargetsOccupied;
     }
 
-    /*public static string GetMoveDirection(int startRank, int startFile, int targetRank, int targetFile, Board board)
-	{
-		Piece movingPiece = board.GetPiece(startRank, startFile);
-		int rankDiff = targetRank - startRank;
-		int fileDiff = targetFile - startFile;
+    public static string GetMoveDirection(Board board, int startRank, int startFile, int targetRank, int targetFile)
+    {
+        Piece movingPiece = board.GetPiece(startRank, startFile);
+        int rankDiff = targetRank - startRank;
+        int fileDiff = targetFile - startFile;
 
-		if (rankDiff == 0 && fileDiff == 0)
-		{
-			throw new InvalidOperationException("Invalid move");
-		}
-		if (movingPiece.PieceType is not PieceType.Knight)
-		{
-			if()
-		}
-		else
-		{
-			return "knight";
-		}
-
-	}*/
+        if (rankDiff == 0 && fileDiff == 0)
+        {
+            throw new InvalidOperationException("Invalid move");
+        }
+        if (movingPiece.PieceType is not PieceType.Knight)
+        {
+            // if rankDiff < 0 => N, NE, NW 
+            switch (rankDiff)
+            {
+                case 0:
+                    switch (fileDiff)
+                    {
+                        case < 0: return "W";
+                        case > 0: return "E";
+                    }
+                    break;
+                case < 0:
+                    switch (fileDiff)
+                    {
+                        case 0: return "N";
+                        case < 0: return "NW";
+                        case > 0: return "NE";
+                    }
+                case > 0:
+                    switch (fileDiff)
+                    {
+                        case 0: return "S";
+                        case < 0: return "SW";
+                        case > 0: return "SE";
+                    }
+            }
+        }
+        throw new InvalidOperationException("Invalid move direction.");
+    }
 }
