@@ -2,7 +2,7 @@
 
 namespace logic;
 
-public static class MoveGenerator
+public class MoveGenerator
 {
     public static void MakeMove(int startRank, int startFile, int targetRank, int targetFile, Board board)
     {
