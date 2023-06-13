@@ -15,7 +15,6 @@ public static class MoveGenerator
             throw new InvalidOperationException("Empty square.");
         }
     }
-
     public static string GenerateMove(string fen)
     {
         string newFen = "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2";
