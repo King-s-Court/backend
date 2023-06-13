@@ -1,7 +1,13 @@
 ﻿using logic;
 using common.models;
 
+// random FEN
 // 4kb1r/p1pRqppp/1p6/8/b4NP1/4B2P/PP3P2/5RK1 w k - 0 21
+
+// no pawn FEN
+// rnbqkbnr/8/8/8/8/8/8/RNBQKBNR w KQkq - 0 1
+
+// SETUP
 
 Console.Clear();
 Console.WriteLine("Please enter a FEN code: ");
@@ -28,38 +34,31 @@ else
     BoardVisualizer.VisualizeBoardFromSquares(board);
 }
 
-// Console.WriteLine("Targeting piece @ RANK: ");
-// int rank = Convert.ToInt32(Console.ReadLine());
+// PLAY
 
-// Console.WriteLine("Targeting piece @ FILE: ");
-// int file = Convert.ToInt32(Console.ReadLine());
+while (true)
+{
+    Console.WriteLine("Moving piece start rank, start file, target rank, target file: ");
+    string moveCoords = Console.ReadLine();
 
-// List<(int rank, int file)> possibleOccupiedTargets = MoveValidator.PathOccupants(rank, file, board);
+    int sRank = Convert.ToInt32(moveCoords.Split(' ')[0]);
+    int sFile = Convert.ToInt32(moveCoords.Split(' ')[1]);
+    int tRank = Convert.ToInt32(moveCoords.Split(' ')[2]);
+    int tFile = Convert.ToInt32(moveCoords.Split(' ')[3]);
 
-// Console.WriteLine($"Path occupants for {board.GetPiece(rank, file).AsString()}:");
+    Console.WriteLine($"{board.GetPiece(sRank, sFile).AsString()} moving {MoveValidator.GetMoveDirection(board, sRank, sFile, tRank, tFile)}.");
+    Console.WriteLine("Press Enter to continue...");
+    Console.ReadLine();
+    Console.Clear();
 
-// foreach ((int rank, int file) square in possibleOccupiedTargets)
-// {
-// 	Console.WriteLine($"{board.GetPiece(square.rank, square.file).AsString()} at [{square.rank}:{square.file}]");
-// }
-
-Console.WriteLine($"Board as FEN string BEFORE move: {board.AsFENString()}");
-
-Console.WriteLine("Moving piece start rank: ");
-int startRank = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Moving piece start file: ");
-int startFile = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Moving piece target rank: ");
-int targetRank = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Moving piece target file: ");
-int targetFile = Convert.ToInt32(Console.ReadLine());
-
-Console.Clear();
-Console.WriteLine($"Moving {board.GetPiece(startRank, startFile)?.AsString()} from |{startRank}:{startFile}| to |{targetRank}:{targetFile}|...\n");
-MoveGenerator.MakeMove(startRank, startFile, targetRank, targetFile, board);
-
-Console.WriteLine($"Board FEN AFTER completing move: {board.AsFENString()}");
-BoardVisualizer.VisualizeBoardFromSquares(board);
-
-// MoveValidator.GetMoveDirection(rank, file);
-
+    if (MoveValidator.IsValid(board, sRank, sFile, tRank, tFile))
+    {
+        MoveGenerator.MakeMove(sRank, sFile, tRank, tFile, board);
+        BoardVisualizer.VisualizeBoardFromSquares(board);
+    }
+    else
+    {
+        Console.Write("Invalid move, try again ...");
+        BoardVisualizer.VisualizeBoardFromSquares(board);
+    }
+}
