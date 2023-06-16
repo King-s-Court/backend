@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using logic;
+using common.models.pieces;
 
 namespace common.models;
 
@@ -35,33 +35,14 @@ public class Board
         return Squares;
     }
 
-    public void AddPiece(int rank, int file, Piece? piece)
+    public void AddPiece(int targetRank, int targetFile, Piece? piece)
     {
-        Squares[rank, file].SquarePiece = piece;
+        Squares[targetRank, targetFile].SquarePiece = piece;
     }
 
     public Piece? GetPiece(int rank, int file)
     {
         return Squares[rank, file].SquarePiece;
-    }
-
-    public void DestroyPiece(int rank, int file)
-    {
-        Squares[rank, file].SquarePiece = null;
-    }
-
-    public void MovePiece(int startRank, int startFile, int targetRank, int targetFile)
-    {
-        if (IsOccupied(startRank, startFile))
-        {
-            Piece? piece = GetPiece(startRank, startFile);
-            AddPiece(targetRank, targetFile, piece);
-            DestroyPiece(startRank, startFile);
-        }
-        else
-        {
-            throw new InvalidOperationException("No piece found.");
-        }
     }
 
     public bool IsOccupied(int rank, int file)

@@ -11,7 +11,6 @@ namespace Tests
         Board testBoard = new();
 
         [Fact]
-        // TODO: this will be runnable for moved pawns as well once IsMoved is implemented for retrieving a pawn from board instead of instantiating a pawn manually
         public void CheckPawnTypeMove()
         {
             FENInterpreter.LoadBoardFromFEN(testBoard, "8/8/8/8/3P4/8/8/8 w KQkq - 0 1");
