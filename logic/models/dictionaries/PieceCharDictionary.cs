@@ -16,6 +16,6 @@ public static class PieceCharDictionary
         {'R', new Rook(PieceColor.White, PieceType.Rook)},
         {'B', new Bishop(PieceColor.White, PieceType.Bishop)},
         {'N', new Knight(PieceColor.White, PieceType.Knight)},
-        {'P', new Juicer(PieceColor.White, PieceType.Juicer)}
+        {'P', new Juicer(PieceColor.White, PieceType.Juicer)},
     };
 }

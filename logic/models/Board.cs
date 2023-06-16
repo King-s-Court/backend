@@ -1,89 +1,93 @@
 ﻿using System.Text;
+using common.models.pieces;
 
 namespace common.models;
 
-public static class Board
+public class Board
 {
-	// [ranks, files]
-	private static Square[,] Squares = new Square[8, 8];
-	public static string ToMove { get; set; }
-	public static string CastlingRights { get; set; }
-	public static string EnPassant { get; set; }
-	public static string HalfmoveClock { get; set; }
-	public static string FullmoveClock { get; set; }
+    // [ranks, files]
+    private Square[,] Squares = new Square[8, 8];
+    public string ToMove { get; set; }
+    public string CastlingRights { get; set; }
+    public string EnPassant { get; set; }
+    public string HalfmoveClock { get; set; }
+    public string FullmoveClock { get; set; }
 
-	static Board()
-	{
-		ToMove = "w";
-		CastlingRights = "KQkq";
-		EnPassant = "-";
-		for (int rank = 0; rank < 8; rank++)
-		{
-			for (int file = 0; file < 8; file++)
-			{
-				Squares[rank, file] = new Square();
-			}
-		}
-	}
+    public Board()
+    {
+        ToMove = "w";
+        CastlingRights = "KQkq";
+        EnPassant = "-";
+        HalfmoveClock = "0";
+        FullmoveClock = "1";
 
-	public static Square[,] GetBoardSquares()
-	{
-		return Squares;
-	}
+        for (int rank = 0; rank < 8; rank++)
+        {
+            for (int file = 0; file < 8; file++)
+            {
+                Squares[rank, file] = new Square();
+            }
+        }
+    }
 
-	public static void AddPiece(int rank, int file, Piece piece)
-	{
-		Squares[rank, file].SquarePiece = piece;
-	}
+    public Square[,] GetBoardSquares()
+    {
+        return Squares;
+    }
 
-	public static Piece GetPiece(int rank, int file)
-	{
-		return Squares[rank, file].SquarePiece;
-	}
+    public void AddPiece(int targetRank, int targetFile, Piece? piece)
+    {
+        Squares[targetRank, targetFile].SquarePiece = piece;
+    }
 
-	public static bool IsOccupied(int rank, int file)
-	{
-		return GetPiece(rank, file) is not null;
-	}
+    public Piece? GetPiece(int rank, int file)
+    {
+        return Squares[rank, file].SquarePiece;
+    }
 
-	public static string AsFENString()
-	{
-		StringBuilder fenBuilder = new();
+    public bool IsOccupied(int rank, int file)
+    {
+        return GetPiece(rank, file) is not null;
+    }
 
-		for (int rank = 0; rank < 8; rank++)
-		{
-			int emptySquares = 0;
-			for (int file = 0; file < 8; file++)
-			{
-				if (!IsOccupied(rank, file))
-				{
-					emptySquares++;
-				}
-				
-				else
-				{
-					if (emptySquares > 0)
-					{
-						fenBuilder.Append(emptySquares);
-						emptySquares = 0;
-					}
-					fenBuilder.Append(GetPiece(rank, file).AsFENChar());
-				}
-			}
+    public string AsFENString()
+    {
+        StringBuilder fenBuilder = new();
 
-			if (emptySquares > 0)
-			{
-				fenBuilder.Append(emptySquares);
-			}
+        for (int rank = 0; rank < 8; rank++)
+        {
+            int emptySquares = 0;
+            for (int file = 0; file < 8; file++)
+            {
+                if (!IsOccupied(rank, file))
+                {
+                    emptySquares++;
+                }
 
-			if (rank < 7)
-			{
-				fenBuilder.Append("/");
-			}
+                else
+                {
+                    if (emptySquares > 0)
+                    {
+                        fenBuilder.Append(emptySquares);
+                        emptySquares = 0;
+                    }
+                    fenBuilder.Append(GetPiece(rank, file)?.AsFENChar());
+                }
+            }
 
-		}
-		fenBuilder.Append($" {ToMove} {CastlingRights} {EnPassant} {HalfmoveClock} {FullmoveClock}");
-		return fenBuilder.ToString();
+            if (emptySquares > 0)
+            {
+                fenBuilder.Append(emptySquares);
+            }
 
-	}
+            if (rank < 7)
+            {
+                fenBuilder.Append("/");
+            }
+
+        }
+        fenBuilder.Append($" {ToMove} {CastlingRights} {EnPassant} {HalfmoveClock} {FullmoveClock}");
+        return fenBuilder.ToString();
+
+    }
 }
